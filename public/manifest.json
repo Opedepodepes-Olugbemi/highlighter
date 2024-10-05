@@ -1,0 +1,33 @@
+{
+    "manifest_version": 2,
+    "name": "AI-Lighter",
+    "version": "1.0",
+    "description": "Highlight and save text from web pages",
+    "permissions": [
+      "activeTab",
+      "storage"
+    ],
+    "browser_action": {
+      "default_popup": "index.html",
+      "default_icon": {
+        "16": "assets/favicon-16x16.png",
+        "48": "assets/favicon-32x32.png",
+        "128": "assets/android-chrome-192x192.png"
+      }
+    },
+    "icons": {
+      "16": "assets/favicon-16x16.png",
+      "48": "assets/favicon-32x32.png",
+      "128": "assets/android-chrome-192x192.png"
+    },
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["content.js"]
+      }
+    ],
+    "background": {
+      "scripts": ["background.js"],
+      "persistent": false
+    }
+  }
