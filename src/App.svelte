@@ -1,8 +1,9 @@
   <script>
   import { onMount } from 'svelte';
   import { writable } from 'svelte/store';
+  import ExaLibrary from './lib/ExaLibrary.svelte';
 
-  let activeTab = 'highlights';
+  let activeTab = 'library';
   let highlights = [];
   const darkMode = writable(false);
   let showFabMenu = false;
@@ -76,12 +77,17 @@
   </header>
   
   <nav>
+    <button class="tab" class:active={activeTab === 'library'} on:click={() => switchTab('library')}>EXA Library</button>
     <button class="tab" class:active={activeTab === 'highlights'} on:click={() => switchTab('highlights')}>My Highlights</button>
     <button class="tab" class:active={activeTab === 'settings'} on:click={() => switchTab('settings')}>Settings</button>
   </nav>
   
   <main>
-    {#if activeTab === 'highlights'}
+    {#if activeTab === 'library'}
+      <section id="library" class="tab-content">
+        <ExaLibrary />
+      </section>
+    {:else if activeTab === 'highlights'}
       <section id="highlights" class="tab-content">
         <input type="text" class="search" placeholder="Search highlights...">
         <ul class="highlight-list">
